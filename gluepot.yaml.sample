@@ -1,0 +1,26 @@
+host:
+    prod.example.com:
+        cluster: prod
+
+service:
+    loop-prod: &loopprod
+        section: program:loop
+        options:
+            command: sh -c "while [ true ]; do echo PROD; sleep 1; done"
+    loop-dev: &loopdev
+        section: program:loop
+        options:
+            command: sh -c "while [ true ]; do echo DEV; sleep 1; done"
+
+cluster:
+    prod:
+        environment:
+            DOMAIN_SUFFIX: 
+        service:
+            - *loopprod
+    default:
+        environment:
+            DOMAIN_SUFFIX: .{GLUEPOT_HOSTNAME}.dev.foo
+        service:
+            - *loopdev
+    
