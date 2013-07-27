@@ -13,7 +13,7 @@ Run C<gluepot -h> for more options.
 
 =head1 DESCRIPTION
 
-gluepot is a script to generate a supervisord.conf and configure environment
+gluepot is a tool to help you make a supervisord.conf and configure environment
 variables for your host specific environment.
 
 =head1 COPYRIGHT
