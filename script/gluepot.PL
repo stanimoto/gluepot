@@ -8,7 +8,7 @@ use App::gluepot::script;
 unless (caller) {
     my $app = App::gluepot::script->new;
     $app->parse_options(@ARGV);
-    $app->doit or exit(1);
+    exit $app->doit;
 }
 
 __END__

@@ -5,7 +5,7 @@
 BEGIN {
 my %fatpacked;
 
-$fatpacked{"App/gluepot.pm"} = <<'APP_GLUEPOT';
+$fatpacked{"App/gluepot.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'APP_GLUEPOT';
   package App::gluepot;
   our $VERSION = '0.01';
   
@@ -37,7 +37,7 @@ $fatpacked{"App/gluepot.pm"} = <<'APP_GLUEPOT';
   1;
 APP_GLUEPOT
 
-$fatpacked{"App/gluepot/script.pm"} = <<'APP_GLUEPOT_SCRIPT';
+$fatpacked{"App/gluepot/script.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'APP_GLUEPOT_SCRIPT';
   package App::gluepot::script;
   use strict;
   use Cwd ();
@@ -89,8 +89,9 @@ $fatpacked{"App/gluepot/script.pm"} = <<'APP_GLUEPOT_SCRIPT';
       my $subcmd = shift @{$self->{argv}};
       $subcmd =~ s/-/_/g;
       if (my $sub = $self->can("subcmd_$subcmd")) {
-          $sub->($self) and return 1;
+          $sub->($self);
       }
+      return 0;
   }
   
   sub config {
@@ -190,12 +191,10 @@ $fatpacked{"App/gluepot/script.pm"} = <<'APP_GLUEPOT_SCRIPT';
   sub show_help {
       my $self = shift;
       print "HAAAAAAAALP!\n";
-      return 1;
   }
   
   sub show_version {
       print "gluepot (App::gluepot) version $VERSION\n";
-      return 1;
   }
   
   1;
@@ -214,7 +213,7 @@ $fatpacked{"App/gluepot/script.pm"} = <<'APP_GLUEPOT_SCRIPT';
   
 APP_GLUEPOT_SCRIPT
 
-$fatpacked{"Test/YAML.pm"} = <<'TEST_YAML';
+$fatpacked{"Test/YAML.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'TEST_YAML';
   package Test::YAML;
   
   use Test::Base 0.47 -Base;
@@ -481,7 +480,7 @@ $fatpacked{"Test/YAML.pm"} = <<'TEST_YAML';
   =cut
 TEST_YAML
 
-$fatpacked{"YAML.pm"} = <<'YAML';
+$fatpacked{"YAML.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML';
   use 5.008001;
   package YAML;
   use YAML::Mo;
@@ -1299,7 +1298,7 @@ $fatpacked{"YAML.pm"} = <<'YAML';
   =cut
 YAML
 
-$fatpacked{"YAML/Any.pm"} = <<'YAML_ANY';
+$fatpacked{"YAML/Any.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_ANY';
   package YAML::Any;
   
   our $VERSION = '0.80';
@@ -1504,7 +1503,7 @@ $fatpacked{"YAML/Any.pm"} = <<'YAML_ANY';
   =cut
 YAML_ANY
 
-$fatpacked{"YAML/Dumper.pm"} = <<'YAML_DUMPER';
+$fatpacked{"YAML/Dumper.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_DUMPER';
   package YAML::Dumper;
   use YAML::Mo;
   extends 'YAML::Dumper::Base';
@@ -2096,7 +2095,7 @@ $fatpacked{"YAML/Dumper.pm"} = <<'YAML_DUMPER';
   =cut
 YAML_DUMPER
 
-$fatpacked{"YAML/Dumper/Base.pm"} = <<'YAML_DUMPER_BASE';
+$fatpacked{"YAML/Dumper/Base.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_DUMPER_BASE';
   package YAML::Dumper::Base;
   use YAML::Mo;
   
@@ -2238,7 +2237,7 @@ $fatpacked{"YAML/Dumper/Base.pm"} = <<'YAML_DUMPER_BASE';
   =cut
 YAML_DUMPER_BASE
 
-$fatpacked{"YAML/Error.pm"} = <<'YAML_ERROR';
+$fatpacked{"YAML/Error.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_ERROR';
   package YAML::Error;
   use YAML::Mo;
   
@@ -2463,7 +2462,7 @@ $fatpacked{"YAML/Error.pm"} = <<'YAML_ERROR';
   =cut
 YAML_ERROR
 
-$fatpacked{"YAML/Loader.pm"} = <<'YAML_LOADER';
+$fatpacked{"YAML/Loader.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_LOADER';
   package YAML::Loader;
   use YAML::Mo;
   extends 'YAML::Loader::Base';
@@ -3254,7 +3253,7 @@ $fatpacked{"YAML/Loader.pm"} = <<'YAML_LOADER';
   =cut
 YAML_LOADER
 
-$fatpacked{"YAML/Loader/Base.pm"} = <<'YAML_LOADER_BASE';
+$fatpacked{"YAML/Loader/Base.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_LOADER_BASE';
   package YAML::Loader::Base;
   use YAML::Mo;
   
@@ -3321,7 +3320,7 @@ $fatpacked{"YAML/Loader/Base.pm"} = <<'YAML_LOADER_BASE';
   =cut
 YAML_LOADER_BASE
 
-$fatpacked{"YAML/Marshall.pm"} = <<'YAML_MARSHALL';
+$fatpacked{"YAML/Marshall.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_MARSHALL';
   use strict;
   use warnings;
   package YAML::Marshall;
@@ -3405,7 +3404,7 @@ $fatpacked{"YAML/Marshall.pm"} = <<'YAML_MARSHALL';
   =cut
 YAML_MARSHALL
 
-$fatpacked{"YAML/Mo.pm"} = <<'YAML_MO';
+$fatpacked{"YAML/Mo.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_MO';
   package YAML::Mo; $VERSION = '0.80';
   # use Mo qw[builder default import];
   #   The following line of code was produced from the previous line by
@@ -3488,7 +3487,7 @@ $fatpacked{"YAML/Mo.pm"} = <<'YAML_MO';
   1;
 YAML_MO
 
-$fatpacked{"YAML/Node.pm"} = <<'YAML_NODE';
+$fatpacked{"YAML/Node.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_NODE';
   use strict;
   use warnings;
   package YAML::Node;
@@ -3797,7 +3796,7 @@ $fatpacked{"YAML/Node.pm"} = <<'YAML_NODE';
   =cut
 YAML_NODE
 
-$fatpacked{"YAML/Tag.pm"} = <<'YAML_TAG';
+$fatpacked{"YAML/Tag.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_TAG';
   use strict;
   use warnings;
   package YAML::Tag;
@@ -3851,7 +3850,7 @@ $fatpacked{"YAML/Tag.pm"} = <<'YAML_TAG';
   =cut
 YAML_TAG
 
-$fatpacked{"YAML/Types.pm"} = <<'YAML_TYPES';
+$fatpacked{"YAML/Types.pm"} = '#line '.(1+__LINE__).' "'.__FILE__."\"\n".<<'YAML_TYPES';
   package YAML::Types;
   use YAML::Mo;
   
@@ -4118,24 +4117,37 @@ YAML_TYPES
 
 s/^  //mg for values %fatpacked;
 
-unshift @INC, sub {
-  if (my $fat = $fatpacked{$_[1]}) {
-    if ($] < 5.008) {
-      return sub {
-        return 0 unless length $fat;
-        $fat =~ s/^([^\n]*\n?)//;
-        $_ = $1;
-        return 1;
-      };
-    }
-    open my $fh, '<', \$fat
-      or die "FatPacker error loading $_[1] (could be a perl installation issue?)";
-    return $fh;
-  }
-  return
-};
+my $class = 'FatPacked::'.(0+\%fatpacked);
+no strict 'refs';
+*{"${class}::files"} = sub { keys %{$_[0]} };
 
-} # END OF FATPACK CODE
+if ($] < 5.008) {
+  *{"${class}::INC"} = sub {
+     if (my $fat = $_[0]{$_[1]}) {
+       return sub {
+         return 0 unless length $fat;
+         $fat =~ s/^([^\n]*\n?)//;
+         $_ = $1;
+         return 1;
+       };
+     }
+     return;
+  };
+}
+
+else {
+  *{"${class}::INC"} = sub {
+    if (my $fat = $_[0]{$_[1]}) {
+      open my $fh, '<', \$fat
+        or die "FatPacker error loading $_[1] (could be a perl installation issue?)";
+      return $fh;
+    }
+    return;
+  };
+}
+
+unshift @INC, bless \%fatpacked, $class;
+  } # END OF FATPACK CODE
 
 
 use strict;
@@ -4144,7 +4156,7 @@ use App::gluepot::script;
 unless (caller) {
     my $app = App::gluepot::script->new;
     $app->parse_options(@ARGV);
-    $app->doit or exit(1);
+    exit $app->doit;
 }
 
 __END__

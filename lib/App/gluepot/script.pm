@@ -49,8 +49,9 @@ sub doit {
     my $subcmd = shift @{$self->{argv}};
     $subcmd =~ s/-/_/g;
     if (my $sub = $self->can("subcmd_$subcmd")) {
-        $sub->($self) and return 1;
+        $sub->($self);
     }
+    return 0;
 }
 
 sub config {
@@ -150,12 +151,10 @@ sub subcmd_run {
 sub show_help {
     my $self = shift;
     print "HAAAAAAAALP!\n";
-    return 1;
 }
 
 sub show_version {
     print "gluepot (App::gluepot) version $VERSION\n";
-    return 1;
 }
 
 1;
